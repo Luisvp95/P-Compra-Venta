@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,10 +26,10 @@ class UpdateRequest extends FormRequest
         return [
 
             'name'=>'required|string|unique:products,name,'. $this->route('product')->id.'|max:255',
-            'image'=>'required|dimensions:min_width=100,min_height=200',
+            //'image'=>'required|dimensions:min_width=100,min_height=200',
             'sell_price'=>'required',
-            'category_id'=>'integer|required|exists:App\Category,id',
-            'provider_id'=>'integer|required|exists:App\Provider,id',
+            'category_id'=>'required',
+            'provider_id'=>'required'
             
         ];
     }
@@ -42,17 +42,15 @@ class UpdateRequest extends FormRequest
             'name.unique'=>'El producto ya está registrado',
             'name.max'=>'Solo se permite 255 caracteres',
 
-            'image.required'=>'Este campo es requerido',
-            'image.dimensions'=>'Solo se permiten imagenes de 100x200 px.',
+            //'image.required'=>'Este campo es requerido',
+            //'image.dimensions'=>'Solo se permiten imagenes de 100x200 px.',
 
             'sell_price.required'=>'Este campo es requerido',
 
             'category_id.required'=>'Este campo es requerido',
-            'category_id.integer'=>'El valor tiene que ser entero',
             'category_id.exists'=>'La catetgoria no existe',
 
             'provider_id.required'=>'Este campo es requerido',
-            'provider_id.integer'=>'El valor tiene que ser entero',
             'provider_id.exists'=>'El proveedor no existe',
         ];
     }

@@ -26,10 +26,10 @@ class StoreRequest extends FormRequest
         return [
 
             'name'=>'required|string|unique:products|max:255',
-            'image'=>'required|dimensions:min_width=100,min_height=200',
+            'imagen'=>'nullable|file|image|mimes:png,jpg|max:2048',
             'sell_price'=>'required',
-            'category_id'=>'integer|required|exists:App\Category,id',
-            'provider_id'=>'integer|required|exists:App\Provider,id',
+            'category_id'=>'required',
+            'provider_id'=>'required'
             
         ];
     }
@@ -37,23 +37,21 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'Este campo es requerido',
-            'name.string'=>'El valor no es correcto',
-            'name.unique'=>'El producto ya está registrado',
-            'name.max'=>'Solo se permite 255 caracteres',
+            'name.required'=>'Este campo es requerido.',
+            'name.string'=>'El valor no es correcto.',
+            'name.unique'=>'El producto ya está registrado.',
+            'name.max'=>'Solo se permite 255 caracteres.',
 
-            'image.required'=>'Este campo es requerido',
-            'image.dimensions'=>'Solo se permiten imagenes de 100x200 px.',
+            'imagen.image'=>'La imagen tiene que ser jpge o png..',
+            'imagen.max'=>'El tamaño de la imagen no puede ser superior a 2 MB.',
+            'imagen.required'=>'Este campo es requerido',
+            //'image.dimensions'=>'Solo se permiten imagenes de 100x200 px.',
 
             'sell_price.required'=>'Este campo es requerido',
 
             'category_id.required'=>'Este campo es requerido',
-            'category_id.integer'=>'El valor tiene que ser entero',
-            'category_id.exists'=>'La catetgoria no existe',
 
             'provider_id.required'=>'Este campo es requerido',
-            'provider_id.integer'=>'El valor tiene que ser entero',
-            'provider_id.exists'=>'El proveedor no existe',
         ];
     }
 }

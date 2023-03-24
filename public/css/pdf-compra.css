@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+#datos {
+    float: left;
+    margin-top: 0%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#encabezado {
+    text-align: center;
+    margin-left: 35%;
+    margin-right: 35%;
+    font-size: 15px;
+}
+
+#fact {
+    float: right;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 20px;
+    background: #33AFFF;
+    align-items: center;
+}
+
+.text-align-center {
+    height: 100px;
+    width: 200px;
+
+    background: #ffff99;
+    color: #333;
+
+    line-height: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+.text-center{
+    height: 30px;
+    width: 150px;
+    color: #ffffff;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+
+section {
+    clear: left;
+}
+
+#proveedor {
+    text-align: left;
+}
+
+#faproveedor {
+    width: 40%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 15px;
+}
+
+#center-text {
+    text-align: center;
+}
+
+#fact,
+#fv,
+#fa {
+    color: #ffffff;
+    font-size: 15px;
+}
+
+#faproveedor thead {
+    padding: 20px;
+    background: #33AFFF;
+    text-align: left;
+    border-bottom: 1px solid #ffffff;
+}
+
+#faccomprador {
+    width: 100;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 15px
+}
+
+#facomprador thead {
+    padding: 20px;
+    background: #33AFFF;
+    text-align: center;
+    border-bottom: 1px solid #ffffff;
+}
+
+#facproducto {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#facproducto thead {
+    padding: 20px;
+    background: #33AFFF;
+    text-align: center;
+    border-bottom: 1px solid #ffffff;
+}

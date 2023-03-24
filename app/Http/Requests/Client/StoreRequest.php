@@ -25,10 +25,10 @@ class StoreRequest extends FormRequest
         return [
 
             'name'=>'required|string|max:255',
-            'ci'=>'required|string|unique:clients|min:8|max:8',
-            'address'=>'required|string|max:255',
-            'phone'=>'string|required|unique:clients|min:8|max:8',
-            'email'=>'string|required|unique:clients|max:255|email:rfc,dns',
+            'ci'=>'nullable|numeric|unique:clients|digits_between:6,10',
+            'address'=>'nullable|string|max:255',
+            'phone' => 'nullable|numeric|unique:clients|digits:8',
+            'email'=>'nullable|string|unique:clients|max:50|email:rfc,dns',
             
         ];
     }
@@ -36,31 +36,29 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'Este campo es requerido',
-            'name.string'=>'El valor no es correcto',
-            'name.max'=>'Solo se permite 255 caracteres',
+            'name.required'=>'Este campo es requerido.',
+            'name.string'=>'El valor no es correcto.',
+            'name.max'=>'Solo se permite 255 caracteres.',
 
-            'ci.required'=>'Este campo es requerido',
-            'ci.string'=>'El valor no es correcto',
-            'ci.unique'=>'El cliente ya está registrado',
-            'ci.max'=>'Solo se permite 8 caracteres',
-            'ci.min'=>'Se requiere 8 caracteres',
+            'ci.required'=>'Este campo es requerido.',
+            'ci.numeric'=>'El campo no debes contener caracteres no numéricos.',
+            'ci.unique'=>'El carnet ya está registrado.',
+            'ci.digits_between'=>'El campo debe tener entre 6 y 10 dígitos.',
 
-            'address.required'=>'Este campo es requerido',
-            'address.string'=>'El valor no es correcto',
-            'address.max'=>'Solo se permite 255 caracteres',
+            'address.required'=>'Este campo es requerido.',
+            'address.string'=>'El valor no es correcto.',
+            'address.max'=>'Solo se permite 255 caracteres.',
 
-            'phone.required'=>'Este campo es requerido',
-            'phone.string'=>'El valor no es correcto',
-            'phone.unique'=>'El telefono ya está registrado',
-            'phone.max'=>'Solo se permite 8 caracteres',
-            'phone.min'=>'Se requiere 8 caracteres',
+            'phone.required'=>'Este campo es requerido.',
+            'phone.unique'=>'El telefono ya está registrado.',
+            'phone.digits'=>'El campo debe tener exactamente 8 dígitos.',
+            'phone.numeric'=>'El campo no debe contener caracteres no numéricos.',
             
-            'email.required'=>'Este campo es requerido',
-            'email.string'=>'El valor no es correcto',
-            'email.unique'=>'El correo ya está registrado',
-            'email.max'=>'Solo se permite 255 caracteres',
-            'email.email'=>'No es un correo electronico',
+            'email.required'=>'Este campo es requerido.',
+            'email.string'=>'El valor no es correcto.',
+            'email.unique'=>'El correo ya está registrado.',
+            'email.max'=>'Solo se permite 50 caracteres.',
+            'email.email'=>'No es un correo electronico.',
 
         ];
     }

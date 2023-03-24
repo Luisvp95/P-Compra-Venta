@@ -19,7 +19,7 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('user_id');
             $table->dateTime('sale_date');
-            $table->decimal('tax');
+            $table->decimal('tax')->default(0);
             $table->decimal('total');
             $table->enum('status', ['VALID','CANCELED'])->default('VALID');
             

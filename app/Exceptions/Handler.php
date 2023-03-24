@@ -38,4 +38,15 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        $message = $exception->getMessage() ?: 'No tienes permiso para acceder a esta página.';
+    
+        if ($exception instanceof \Illuminate\Auth\Access\AuthorizationException) {
+            return response()->view('errors.403', ['message' => $message], 403);
+        }
+    
+        return parent::render($request, $exception);
+    }
 }

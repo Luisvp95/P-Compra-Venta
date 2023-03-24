@@ -19,10 +19,10 @@ class CreatePurchasesTable extends Migration
             $table->unsignedBigInteger('provider_id');
             $table->unsignedBigInteger('user_id');
             $table->dateTime('purchase_date');
-            $table->decimal('tax');
+            $table->decimal('tax')->nullable();
             $table->decimal('total');
             $table->enum('status', ['VALID','CANCELED'])->default('VALID');
-            $table->string('picture');
+            $table->string('picture')->nullable();
             
             $table->timestamps();
 

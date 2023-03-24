@@ -20,7 +20,7 @@ class CreateSaleDetailsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
             $table->decimal('price');
-            $table->decimal('discount');
+            $table->decimal('discount')->default(0);
 
             $table->timestamps();
 

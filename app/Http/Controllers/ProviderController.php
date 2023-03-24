@@ -10,6 +10,14 @@ use App\Http\Requests\Provider\UpdateRequest;
 
 class ProviderController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-proveedor|crear-proveedor|detalle-proveedor|editar-proveedor|borrar-proveedor', ["only"=>['index']]);
+        $this->middleware('permission:detalle-proveedor', ['only'=>['show']]);
+        $this->middleware('permission:crear-proveedor', ['only'=>['create','store']]);
+        $this->middleware('permission:editar-proveedor', ['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-proveedor', ['only'=>['destroy']]);
+    }
     public function index()
     {
         $providers = Provider::get();
@@ -37,7 +45,7 @@ class ProviderController extends Controller
 
     public function edit(Provider $provider)
     {
-        return view('admin.provider.show', compact('provider'));
+        return view('admin.provider.edit', compact('provider'));
     }
 
 

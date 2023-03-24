@@ -14,4 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
     ];
+
+    protected $addHttpCookie = true;
+    protected $expires = 120; // Duración en minutos
 }
