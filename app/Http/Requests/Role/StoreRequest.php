@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'permission' => 'required|array',
             'permission.*' => 'integer',
-            'name' => 'required|string|max:255',
+            'name' => 'required|unique:roles|string|max:255',
         ];
     }
 
@@ -34,6 +34,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name.required' => 'Este campo es requerido.',
+            'name.unique' => 'Este nombre de rol ya fue registrado.',
             'permission.required' => 'Debe seleccionar al menos un permiso'
         ];
     }

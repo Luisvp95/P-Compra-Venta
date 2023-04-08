@@ -37,7 +37,7 @@
                         {!! Form::model($role, ['route' => ['roles.update', $role], 'method' => 'PUT']) !!}
                         <div class="form-group">
                             <label for="name">Nombre del rol</label>
-                            <input type="text" name="name" id="name" value="{{ $role->name }}"
+                            <input type="text" name="name" id="name" value="{{ old('name', $role->name) }}"
                                 class="form-control @error('name') is-invalid @enderror"
                                 placeholder="Ingrese nombre del rol">
                             @error('name')
@@ -59,7 +59,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos Usuario</h3>
                                     @foreach ($userPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name' . ($errors->has('permission') ? ' is-invalid' : ''), 'name' => 'permission[]']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name' . ($errors->has('permission') ? ' is-invalid' : ''), 'name' => 'permission[]']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -68,7 +68,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de rol</h3>
                                     @foreach ($rolPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -77,7 +77,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de categoria</h3>
                                     @foreach ($categoryPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -86,7 +86,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de cliente</h3>
                                     @foreach ($clientPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -96,7 +96,7 @@
                                     <h3 class="h5 mb-4">Permisos de producto</h3>
                                     @foreach ($productPermission as $id => $name)
                                         <label>
-                                            {{ Form::checkbox('permission[]', $id, false, ['class' => 'name', 'value' => '']) }}
+                                            {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name', 'value' => '']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -105,7 +105,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de proveedor</h3>
                                     @foreach ($providerPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -114,7 +114,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de compra</h3>
                                     @foreach ($purchasePermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -123,7 +123,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de venta</h3>
                                     @foreach ($salePermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -132,7 +132,15 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de reporte</h3>
                                     @foreach ($reportPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
+                                            {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
+                                    @endforeach
+                                    @foreach ($reportfechaPermission as $id => $name)
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
+                                            {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
+                                    @endforeach
+                                    @foreach ($consultarfechaPermission as $id => $name)
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -141,7 +149,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de empresa</h3>
                                     @foreach ($businesPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>
@@ -150,7 +158,7 @@
                                 <div class="form-group checkbox-grid">
                                     <h3 class="h5 mb-4">Permisos de impresora</h3>
                                     @foreach ($printerPermission as $id => $name)
-                                        <label> {{ Form::checkbox('permission[]', $id, false, ['class' => 'name']) }}
+                                        <label> {{ Form::checkbox('permission[]', $id, in_array($id, $assignedPermissions), ['class' => 'name']) }}
                                             {{ Form::label($name, $name, ['class' => 'form-check-label']) }}</label> <br>
                                     @endforeach
                                 </div>

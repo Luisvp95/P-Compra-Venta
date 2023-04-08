@@ -46,13 +46,6 @@ public function run()
         'detalle-reporte-por-fecha',
         'consultar-fecha',
 
-
-        'ver-categoria',
-        'crear-categoria',
-        'editar-categoria',
-        'borrar-categoria',
-        'detalle-categoria',
-
         'ver-cliente',
         'crear-cliente',
         'editar-cliente',
@@ -76,7 +69,6 @@ public function run()
         'detalle-compra',
         'pdf-compra',
         'estado-compra',
-        
 
         'ver-venta',
         'crear-venta',
