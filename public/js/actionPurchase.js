@@ -38,12 +38,11 @@ function agregar(){
         evaluar();
         $('#detalles').append(fila);
     }else{
-        console.log('Datos incompletos o inválidos');
-    swal({
-        icon: 'error',
-        title: 'Error',
-        text: 'Ingrese todos los datos',
-    });
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ingrese todos los datos',
+            })
     }
 }
 function limpiar(){

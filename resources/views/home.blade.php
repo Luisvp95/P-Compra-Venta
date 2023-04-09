@@ -20,7 +20,27 @@
                         <div class="d-flex justify-content-between">
                         </div>
                         <div class="row">
-                            @foreach ($comprasmes as $total)
+                            @if (count($comprasmesactual) > 0)
+                                @foreach ($comprasmesactual as $total)
+                                    <div class="col-lg-6 col-xs-6 mb-3">
+                                        <div class="card text-white bg-success">
+                                            <div class="card-body pb-0">
+                                                <div class="float-right">
+                                                    <i class="fas fa-cart-arrow-down fa-4x"></i>
+                                                </div>
+                                                <div class="text-value h4">
+                                                    <strong>Bs. {{ $total->totalmes }} (MES ACTUAL)</strong>
+                                                </div>
+                                                <div class="h3">Compras</div>
+                                            </div>
+                                            <div class="chart-wrapper mt-3 mx-3" style="height: 35px;">
+                                                <a href="{{ route('purchases.index') }}" class="small-box-footer h4">Compras
+                                                    <i class="fa fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
                                 <div class="col-lg-6 col-xs-6 mb-3">
                                     <div class="card text-white bg-success">
                                         <div class="card-body pb-0">
@@ -28,7 +48,7 @@
                                                 <i class="fas fa-cart-arrow-down fa-4x"></i>
                                             </div>
                                             <div class="text-value h4">
-                                                <strong>Bs. {{ $total->totalmes }} (MES ACTUAL)</strong>
+                                                <strong>Bs. 0</strong>
                                             </div>
                                             <div class="h3">Compras</div>
                                         </div>
@@ -38,9 +58,29 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @endif
 
-                            @foreach ($ventasmes as $total)
+                            @if (count($ventasmesactual) > 0)
+                                @foreach ($ventasmesactual as $total)
+                                    <div class="col-lg-6 col-xs-6">
+                                        <div class="card text-white bg-info">
+                                            <div class="card-body pb-0">
+                                                <div class="float-right">
+                                                    <i class="fas fa-shopping-cart fa-4x"></i>
+                                                </div>
+                                                <div class="text-value h4">
+                                                    <strong>Bs. {{ $total->totalmes }} (MES ACTUAL)</strong>
+                                                </div>
+                                                <div class="h3">Ventas</div>
+                                            </div>
+                                            <div class="chart-wrapper mt-3 mx-3" style="height: 35px;">
+                                                <a href="{{ route('sales.index') }}" class="small-box-footer h4">Ventas
+                                                    <i class="fa fa-arrow-circle-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
                                 <div class="col-lg-6 col-xs-6">
                                     <div class="card text-white bg-info">
                                         <div class="card-body pb-0">
@@ -48,7 +88,7 @@
                                                 <i class="fas fa-shopping-cart fa-4x"></i>
                                             </div>
                                             <div class="text-value h4">
-                                                <strong>Bs. {{ $total->totalmes }} (MES ACTUAL)</strong>
+                                                <strong>Bs. 0</strong>
                                             </div>
                                             <div class="h3">Ventas</div>
                                         </div>
@@ -58,7 +98,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

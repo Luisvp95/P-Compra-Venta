@@ -27,7 +27,19 @@ class HomeController extends Controller
         $comprasmes=DB::select('SELECT monthname(c.purchase_date) as mes, sum(c.total) as
         totalmes from purchases c where c.status="VALID" group by monthname(c.purchase_date) 
         order by month(c.purchase_date) desc limit 12');
+
+        $comprasmesactual = DB::select('SELECT DATE_FORMAT(purchase_date, \'%M\') as mes, SUM(total) as totalmes
+        FROM purchases
+        WHERE status = \'VALID\' AND MONTH(purchase_date) = MONTH(CURRENT_DATE) AND YEAR(purchase_date) = YEAR(CURRENT_DATE)
+        GROUP BY DATE_FORMAT(purchase_date, \'%M\')');
        
+        $ventasmesactual = DB::select('SELECT DATE_FORMAT(sale_date, \'%M\') as mes, SUM(total) as totalmes
+        FROM sales
+        WHERE status = \'VALID\' AND MONTH(sale_date) = MONTH(CURRENT_DATE) AND YEAR(sale_date) = YEAR(CURRENT_DATE)
+        GROUP BY DATE_FORMAT(sale_date, \'%M\')');
+
+        //dd($ventasmesactual);
+
         $ventasmes=DB::select('SELECT monthname(v.sale_date) as mes, sum(v.total) as totalmes
         from sales v where v.status="VALID" group by monthname(v.sale_date) order by month
         (v.sale_date) desc limit 12');
@@ -49,6 +61,6 @@ class HomeController extends Controller
         and year(v.sale_date)=year(curdate())
         group by p.code ,p.name, p.id, p.stock order by sum(dv.quantity) desc limit 10');
     
-        return view('home', compact('comprasmes','ventasmes','ventasdia','totales','productosvendidos'));
+        return view('home', compact('comprasmes','comprasmesactual', 'ventasmes', 'ventasmesactual','ventasdia','totales','productosvendidos'));
     }
 }
