@@ -33,7 +33,7 @@
                                     Nombre
                                 </strong>
                                 <p class="text-muted">
-                                    {{ $busine->name }}
+                                    {{ $busine->name ?? '' }}
                                 </p>
                                 <hr>
                                 <strong>
@@ -41,7 +41,7 @@
                                     Descripción
                                 </strong>
                                 <p class="text-muted">
-                                    {{ $busine->description }}
+                                    {{ $busine->description ?? '' }}
                                 </p>
                                 <hr>
                                 <strong>
@@ -49,7 +49,7 @@
                                     Dirección
                                 </strong>
                                 <p class="text-muted">
-                                    {{ $busine->address }}
+                                    {{ $busine->address ?? ''}}
                                 </p>
 
 
@@ -60,7 +60,7 @@
                                     NIC
                                 </strong>
                                 <p class="text-muted">
-                                    {{ $busine->nic }}
+                                    {{ $busine->nic ?? '' }}
                                 </p>
                                 <hr>
                                 <strong>
@@ -68,7 +68,7 @@
                                     Correo
                                 </strong>
                                 <p class="text-muted">
-                                    {{ $busine->email }}
+                                    {{ $busine->email ?? '' }}
                                 </p>
                                 <hr>
                                 <strong>
@@ -76,7 +76,7 @@
                                     Logo
                                 </strong>
                                 <p class="text-muted">
-                                    <img src="{{ asset($busine->logo) }}" alt="profile" class="img-lg mb-3">
+                                    <img src="{{ asset($busine->logo ?? '') }}" alt="profile" class="img-lg mb-3">
                                 </p>
                             </div>
                         </div>
